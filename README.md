@@ -2,8 +2,8 @@
 
 Enkel tv-guide med store knapper og tydelig tekst. Mørk bakgrunn, skriften Atkinson Hyperlegible, og tre tekststørrelser.
 
-- **Forside:** før kl. 17 vises «I kveld kl. 20.00», ellers «Nå på tv». En knapp bytter.
-- **Se alt i kveld:** velg Nå, 19.00, 20.00, 21.00, 22.00 eller 23.00.
+- **Forside:** alltid «Nå på tv», med fremdriftslinje og hva som kommer etterpå.
+- **Se senere i kveld:** velg Nå, 19.00, 20.00, 21.00, 22.00 eller 23.00.
 - **Trykk på en kanal:** hele kvelden for den kanalen, med programmet kl. 20.00 markert i gult.
 
 ## Kjøre lokalt

@@ -64,21 +64,15 @@
     return guide.channels.some(function (c) { return c.demo; }) ? '<p class="note">Kanaler merket «eksempel» viser oppdiktede programmer.</p>' : '';
   }
 
-  function viewHome(t, flip) {
-    var p = parts(t);
-    var evening = p.hour >= 5 && p.hour < 17;
-    if (flip) evening = !evening;
-    var target = evening ? osloAt(t, 20, 0) : t;
+  function viewHome(t) {
     var rows = guide.channels.map(function (c) {
-      return rowHtml(c, at(c, target), { progress: !evening, next: !evening, t: t });
+      return rowHtml(c, at(c, t), { progress: true, next: true, t: t });
     }).join('');
     return topbar(t) +
-      '<div class="head">' + (evening ? 'I kveld kl. 20.00' : 'Nå på tv') + '</div>' +
+      '<div class="head">Nå på tv</div>' +
       '<div class="rows">' + rows + '</div>' +
       '<div class="actions">' +
-      '<a class="btn solid" href="#tid" role="button" style="text-align:center;display:block">Se alt i kveld</a>' +
-      '<a class="btn" href="' + (flip ? '#hjem' : '#bytt') + '" role="button" style="text-align:center;display:block">' +
-      (evening ? 'Hva går akkurat nå?' : 'Hva går i kveld?') + '</a></div>' + demoNote();
+      '<a class="btn solid" href="#tid" role="button" style="text-align:center;display:block">Se senere i kveld</a></div>' + demoNote();
   }
 
   function viewTime(t) {
@@ -123,7 +117,7 @@
     var html;
     if (h === 'tid') html = viewTime(t);
     else if (h.indexOf('kanal-') === 0) html = viewChannel(t, h.slice(6));
-    else html = viewHome(t, h === 'bytt');
+    else html = viewHome(t);
     app.innerHTML = html;
   }
 
