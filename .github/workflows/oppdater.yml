@@ -1,0 +1,21 @@
+# Henter nye programmer hver natt og hver morgen, og legger dem i data/guide.json.
+name: Oppdater programoversikt
+on:
+  schedule:
+    - cron: "10 3 * * *"
+    - cron: "10 9 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  oppdater:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/fetch_guide.py
+      - run: |
+          git config user.name "tvguide-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data/guide.json
+          git diff --cached --quiet || git commit -m "Oppdater programoversikt"
+          git push
